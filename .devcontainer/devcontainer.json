@@ -1,0 +1,40 @@
+{
+    "name": "Python Dev Container",
+    "image": "mcr.microsoft.com/vscode/devcontainers/python:3.9", // Use the appropriate Python version
+
+    // Features to install in the dev container
+    "features": {
+        "ghcr.io/devcontainers/features/python:1": {
+            "version": "3.9" // Specify the Python version
+        }
+    },
+
+    // Settings for the VS Code extensions
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "ms-python.vscode-pylance"
+            ],
+            "settings": {
+                "python.pythonPath": "/usr/local/bin/python",
+                "python.linting.enabled": true,
+                "python.linting.pylintEnabled": true,
+                "python.formatting.autopep8Path": "/usr/local/bin/autopep8",
+                "python.formatting.provider": "autopep8",
+                "python.testing.unittestEnabled": true,
+                "python.testing.pytestEnabled": true
+            }
+        }
+    },
+
+    // Forward ports
+    "forwardPorts": [],
+
+    // Mount local source code into the container
+    "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+    "workspaceFolder": "/workspace",
+
+    // Run commands after the container is created
+    "postCreateCommand": "pip install -r requirements.txt"
+}
